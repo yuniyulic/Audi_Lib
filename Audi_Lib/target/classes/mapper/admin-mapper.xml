@@ -11,7 +11,7 @@
 		<result column="MEMBER_ADDR_DETAIL" 	property="memberAddrDetail"/>
 		<result column="MEMBER_TEL" 			property="memberTel"/>
 		<result column="MEMBER_POINT" 			property="memberPoint"/>
-		<result column="MEMBER_RENT_COUNT" 		property="memberRentCount"/>
+		<result column="MEMBER_RENT_COUNT" 		property="memberRentCount"/> 
 		<result column="MEMBER_LEVEL" 			property="memberLevel"/>
 		<result column="MEMBER_CAR_NUM" 		property="memberCarNum"/>
 		<result column="REG_DATE" 				property="regDate"/>

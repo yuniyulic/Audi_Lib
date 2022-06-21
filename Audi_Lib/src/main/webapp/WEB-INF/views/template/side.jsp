@@ -65,6 +65,13 @@ font-size: 1.05rem;
 		<div class="title list-group-item title-manageMenu">관리자 메뉴</div>
 	</li>
     <li class="lili">
+        <div class="title list-group-item list-group-item-action"><a href="#" class="sideBody">테스트 메뉴</a></div>
+        <ul class="sideUl">
+            <li class="list-group-item list-group-item-action <c:if test="${sideMenu eq 12 }">active</c:if>"><a href="/admin/testAdminMemberList?sideMenu=12" class="sideBody">테스트-회원목록조회</a></li>
+            <li class="list-group-item list-group-item-action <c:if test="${sideMenu eq 13 }">active</c:if>"><a href="/admin/testAdminUpdateMemberInfo?sideMenu=13" class="sideBody">테스트-회원정보수정삭제</a></li>
+        </ul>
+    </li>
+    <li class="lili">
         <div class="title list-group-item list-group-item-action"><a href="#" class="sideBody">회원 관리</a></div>
         <ul class="sideUl">
             <li class="list-group-item list-group-item-action <c:if test="${sideMenu eq 1 }">active</c:if>"><a href="/admin/adminMemberList?sideMenu=1" class="sideBody">회원 목록 조회</a></li>

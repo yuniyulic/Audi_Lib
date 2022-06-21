@@ -1,6 +1,5 @@
 /* 페이지 로딩 후 실행 */
 $(document).ready(function(){
-   //alert('자바스크립트 파일 로딩 성공');
 	initValidation();
 	
 	$(document).on('click', '#overlapCheck', function(){

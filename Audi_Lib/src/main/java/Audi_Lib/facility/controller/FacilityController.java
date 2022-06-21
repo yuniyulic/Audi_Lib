@@ -42,6 +42,17 @@ public class FacilityController {
 	
 	
 	/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ주차장 ㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+	//테스트 - 주차장 이용 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	@GetMapping("/testParking")
+	public String testShowParking(HttpSession session, Model model) {
+		MemberVO memberVO = (MemberVO)session.getAttribute("loginInfo");
+		if(memberVO != null) {
+			model.addAttribute("MemberInfo", memberService.selectBasicMemberInfo(memberVO));
+		}
+		return "facility/test_parking";
+	}
+	
+	
 	//주차장 이용
 	@GetMapping("/parking")
 	public String showParking(HttpSession session, Model model) {

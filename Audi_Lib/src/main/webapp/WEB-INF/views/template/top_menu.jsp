@@ -194,6 +194,8 @@ ul.dropdown-menu.show{
 		          <li class="li-height"><a class="dropdown-item" href="/facility/libEvent">행사 소개</a></li>
 		          <li><hr class="dropdown-divider"></li>
 		          <li class="li-height"><a class="dropdown-item" href="/facility/libCalendar">도서관 전체일정</a></li>
+		          <li><hr class="dropdown-divider"></li>
+		          <li class="li-height"><a class="dropdown-item" href="/facility/testParking">테스트 - 주차장 이용</a></li>
 		        </ul>
 			</li>
 			<li class="nav-item col-2">

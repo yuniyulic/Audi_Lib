@@ -42,12 +42,80 @@ public class AdminController {
 	private FacilityService facilityService;
 	
 
+	//테스트 - 회원 목록 조회
+	@RequestMapping("/testAdminMemberList")
+	public String testAdminMemberList(Model model, MemberVO memberVO, BookVO bookVO, PagingVO pagingVO,
+										@RequestParam(name="sideMenu", required=false, defaultValue="12") String sideMenu,
+										@RequestParam(value="nowPage", required=false) String nowPage,
+										@RequestParam(value="cntPerPage", required=false) String cntPerPage) {
+		
+		//페이징 처리
+		int total = adminService.countMemberForAdmin(bookVO);
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "10";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) {
+			cntPerPage = "10";
+		}
+		pagingVO = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		pagingVO.setKeyword(bookVO.getKeyword());
+		pagingVO.setCondition(bookVO.getCondition());
+		model.addAttribute("paging", pagingVO);
+		
+		model.addAttribute("sideMenu", sideMenu);
+		model.addAttribute("memberList", adminService.selectMemberForAdmin(pagingVO));
+		
+		return "admin/test_admin_member_list";
+	}
+	
+	
+	//테스트 - 회원 정보 수정/삭제 페이지로 이동
+	@RequestMapping("/testAdminUpdateMemberInfo")
+	public String testAdminUpdateMemberInfo(@RequestParam(name="sideMenu", required=false, defaultValue="13")String sideMenu, 
+											@RequestParam(value="nowPage", required=false)String nowPage,
+											@RequestParam(value="cntPerPage", required=false)String cntPerPage,
+											Model model, MemberVO memberVO, BookVO bookVO, PagingVO pagingVO) {
+		//페이징 처리
+		int total = adminService.countMemberForAdmin(bookVO);
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "10";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) {
+			cntPerPage = "10";
+		}
+		pagingVO = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		pagingVO.setKeyword(bookVO.getKeyword());
+		pagingVO.setCondition(bookVO.getCondition());
+		model.addAttribute("paging", pagingVO);
+		
+		//회원 목록 조회
+		model.addAttribute("sideMenu", sideMenu);
+		model.addAttribute("memberList", adminService.selectMemberForAdmin(pagingVO));
+		
+		return "admin/test_admin_update_member_info";
+	}
+	
+	//테스트 - 회원 정보 수정
+	//test_admin_update_member_info.jsp에서 '변경' 버튼 클릭 시 실행
+	@ResponseBody
+	@RequestMapping("/testUpdateMemberInfo")
+	public int testUpdateMemberInfo(MemberVO memberVO) {
+		return adminService.updateMemberInfoOfAdmin(memberVO);
+	}
+	
+	
 	//회원목록페이지 (관리자메뉴 첫화면)
 	//home.jsp에서 '관리자메뉴' 클릭 시 admin_member_list.jsp로 이동
 	//side.jsp에서 '회원 목록 조회' 클릭 시에도 admin_member_list.jsp로 이동
 	@RequestMapping("/adminMemberList")
-	public String adminMemberList(@RequestParam(name = "sideMenu", required = false, defaultValue = "1") String sideMenu, Model model, MemberVO memberVO
-									, PagingVO pagingVO, BookVO bookVO, @RequestParam(value="nowPage", required = false)String nowPage, @RequestParam(value="cntPerPage", required = false)String cntPerPage) {
+	public String adminMemberList(@RequestParam(name = "sideMenu", required = false, defaultValue = "1") String sideMenu, 
+									Model model, MemberVO memberVO, PagingVO pagingVO, BookVO bookVO, 
+									@RequestParam(value="nowPage", required = false)String nowPage, 
+									@RequestParam(value="cntPerPage", required = false)String cntPerPage) {
 		
 		//페이징 처리
 		int total = adminService.countMemberForAdmin(bookVO);
